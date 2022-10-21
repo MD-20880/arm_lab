@@ -88,12 +88,12 @@ ahbmst1 : ahbmst port map(
   dmao => dmao,
   ahbi => ahbmi,
   ahbo => ahbmo
-)
+);
 
 ds1: data_swapper port map(
   dmao => dmao,
-  HRDATA => HRDATA;
-)
+  HRDATA => HRDATA
+);
 
 sm1: State_Machine port map (
   clkm => clkm,
