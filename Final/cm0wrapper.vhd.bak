@@ -130,4 +130,3 @@ signal HREADY : std_logic; -- AHB stall signal
             HRDATA => HRDATA,
             HREADY => HREADY
         );
-      end;
