@@ -109,4 +109,3 @@ sm1: State_Machine port map (
 );
 
 end structural;
-

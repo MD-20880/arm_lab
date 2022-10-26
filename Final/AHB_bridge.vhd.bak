@@ -40,8 +40,8 @@ architecture structural of AHB_bridge is
   GTRANS : in std_logic_vector (1 downto 0); -- AHB transfer: non-sequential only
   GWDATA : in std_logic_vector (31 downto 0); -- AHB write-data
   GWRITE : in std_logic; -- AHB write control
-  dataMAin : in ahb_mst_in_type; -- dmai
-  dataMAout : out ahb_mst_out_type; -- dmao
+  dataMAin : in ahb_dma_in_type; -- dmai
+  dataMAout : out ahb_dma_out_type; -- dmao
   GREADY : out std_logic -- AHB stall signal
  
  );
@@ -68,10 +68,10 @@ architecture structural of AHB_bridge is
 
   component data_swapper
     port(
-      dmao : in ahb_dma_in_type;
-      HRDATA : out std_logic_vector (31 downto 0);
+      dmao : in ahb_dma_out_type;
+      HRDATA : out std_logic_vector (31 downto 0)
 
-    )
+    );
   end component;
 --declare a component for ahbmst 
 --declare a component for data_swapper 
@@ -103,8 +103,8 @@ sm1: State_Machine port map (
   GTRANS => HTRANS,
   GWDATA => HWDATA,
   GWRITE => HWRITE,
-  dataMAin => ahbmi,
-  dataMAout => ahbmo,
+  dataMAin => dmai,
+  dataMAout => dmao,
   GREADY => HREADY
 );
 
