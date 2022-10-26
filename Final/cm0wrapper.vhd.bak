@@ -24,7 +24,7 @@ end;
 
 architecture structural of cm0_wrapper is 
 
-    component cortexm0
+    component CORTEXM0DS
         port(
             -- CLOCK AND RESETS
             HCLK : in std_logic;
@@ -56,7 +56,7 @@ architecture structural of cm0_wrapper is
 
         );
         
-    END component cortexm0;
+    END component CORTEXM0DS;
 
     component AHB_bridge
         port(
@@ -87,7 +87,7 @@ signal HREADY : std_logic; -- AHB stall signal
 
     begin
 
-        cortexm0_c : cortexm0 port map(
+        cortexm0_c : CORTEXM0DS port map(
             HCLK => clkm,
             HRESETn => rstn,
 
@@ -95,12 +95,12 @@ signal HREADY : std_logic; -- AHB stall signal
             HBURST => ahbmo.hburst,
             HMASTLOCK => ahbmo.hlock,
             HPROT => ahbmo.hprot,
-            HSIZE => ahbmo.hsize,
-            HTRANS => ahbmo.htrans,
-            HWDATA => ahbmo.hwdata,
-            HWRITE => ahbmo.hwrite,
-            HRDATA => ahbmi.hrdata,
-            HREADY => ahbmi.hready,
+            HSIZE => HSIZE,
+            HTRANS => HTRANS,
+            HWDATA => HWDATA,
+            HWRITE => HWRITE,
+            HRDATA => HRDATA,
+            HREADY => HREADY,
             HRESP => ahbmi.hresp(0),
 
             NMI => '0',
@@ -130,3 +130,5 @@ signal HREADY : std_logic; -- AHB stall signal
             HRDATA => HRDATA,
             HREADY => HREADY
         );
+      end;
+
