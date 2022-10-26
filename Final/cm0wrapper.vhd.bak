@@ -92,16 +92,16 @@ signal HREADY : std_logic; -- AHB stall signal
             HRESETn => rstn,
 
             HADDR =>HADDR,
-            HBURST => ahmbo.hburst,
-            HMASTLOCK => ahmbo.lock,
-            HPROT => ahmbo.hprot,
-            HSIZE => HSIZE,
-            HTRANS => HTRANS,
-            HWDATA => HWDATA,
-            HWRITE => HWRITE,
-            HRDATA => HRDATA,
-            HREADY => HREADY,
-            HRESP => ahmbi.hresp,
+            HBURST => ahbmo.hburst,
+            HMASTLOCK => ahbmo.hlock,
+            HPROT => ahbmo.hprot,
+            HSIZE => ahbmo.hsize,
+            HTRANS => ahbmo.htrans,
+            HWDATA => ahbmo.hwdata,
+            HWRITE => ahbmo.hwrite,
+            HRDATA => ahbmi.hrdata,
+            HREADY => ahbmi.hready,
+            HRESP => ahbmi.hresp(0),
 
             NMI => '0',
             IRQ => "0000000000000000",
@@ -130,4 +130,3 @@ signal HREADY : std_logic; -- AHB stall signal
             HRDATA => HRDATA,
             HREADY => HREADY
         );
-      end;
