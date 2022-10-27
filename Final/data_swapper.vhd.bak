@@ -30,19 +30,19 @@ begin
   
   swap : process(dmao)
   begin
-    HRDATA(7 downto 0) <= dmao.rdata(31 downto 24);
-    HRDATA(15 downto 8) <= dmao.rdata(23 downto 16);
-    HRDATA(23 downto 16) <= dmao.rdata(15 downto 8);
-    HRDATA(31 downto 24) <= dmao.rdata(7 downto 0);
-    -- isData <= '1';
+    temp(7 downto 0) <= dmao.rdata(31 downto 24);
+    temp(15 downto 8) <= dmao.rdata(23 downto 16);
+    temp(23 downto 16) <= dmao.rdata(15 downto 8);
+    temp(31 downto 24) <= dmao.rdata(7 downto 0);
+    isData <= '1';
   end process;
   
-  --output : process(isData)
-  --begin
-    --if isData = '1' then
-     -- HRDATA <= temp;
-    --  isData <= '0';
-   -- end if;
-  --end process;
+  output : process(isData)
+  begin
+    if isData = '1' then
+      HRDATA <= temp;
+      isData <= '0';
+    end if;
+  end process;
 end;
 
