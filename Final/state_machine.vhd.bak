@@ -25,7 +25,6 @@ entity state_machine is
  HTRANS : in std_logic_vector (1 downto 0); -- AHB transfer: non-sequential only
  HWDATA : in std_logic_vector (31 downto 0); -- AHB write-data
  HWRITE : in std_logic; -- AHB write control
- HRDATA : out std_logic_vector (31 downto 0); -- AHB read-data
  HREADY : out std_logic -- AHB stall signal
  );
 end;
@@ -45,6 +44,12 @@ architecture structural of state_machine is
 			CASE curState IS
 
 	      			WHEN idle =>
+	      		      			  
+	      			      dmai.address <= "00000000000000000000000000000000";
+	            	  dmai.wdata <= "00000000000000000000000000000000";
+	            		 dmai.write <= '0';
+	         			   dmai.size <= '000';
+	         			   
 	            			IF HTRANS = "10" THEN 
 	              				nextState <= init_trans;
 	            			ELSE

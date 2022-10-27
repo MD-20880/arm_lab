@@ -44,6 +44,12 @@ architecture structural of state_machine is
 			CASE curState IS
 
 	      			WHEN idle =>
+	      		      			  
+	      			      dmai.address <= "00000000000000000000000000000000";
+	            	  dmai.wdata <= "00000000000000000000000000000000";
+	            		 dmai.write <= '0';
+	         			   dmai.size <= "000";
+	         			   
 	            			IF HTRANS = "10" THEN 
 	              				nextState <= init_trans;
 	            			ELSE
