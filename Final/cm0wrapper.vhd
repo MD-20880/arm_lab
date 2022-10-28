@@ -77,6 +77,12 @@ architecture structural of cm0_wrapper is
         );
     END component AHB_bridge;
 
+    component DetectorBus is
+        port ( Clock : in  STD_LOGIC;
+               DataBus : in  STD_LOGIC_VECTOR (31 downto 0);
+               Detector : out  STD_LOGIC);
+    end component DetectorBus;
+
 signal HADDR : std_logic_vector (31 downto 0); -- AHB transaction address
 signal HSIZE : std_logic_vector (2 downto 0); -- AHB size: byte, half-word or word
 signal HTRANS : std_logic_vector (1 downto 0); -- AHB transfer: non-sequential only
@@ -84,6 +90,8 @@ signal HWDATA : std_logic_vector (31 downto 0); -- AHB write-data
 signal HWRITE : std_logic; -- AHB write control
 signal HRDATA : std_logic_vector (31 downto 0); -- AHB read-data
 signal HREADY : std_logic; -- AHB stall signal
+
+signal LED : std_logic;
 
     begin
 
@@ -130,5 +138,14 @@ signal HREADY : std_logic; -- AHB stall signal
             HRDATA => HRDATA,
             HREADY => HREADY
         );
+        
+        detector: DetectorBus port map(
+            Clock => clkm,
+            DataBus => HRDATA,
+            Detector => LED
+        );
+
+
+
       end;
 
