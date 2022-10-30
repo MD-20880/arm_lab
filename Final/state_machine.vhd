@@ -67,7 +67,8 @@ architecture structural of state_machine is
 	            			ELSE
 	              				nextState <= instr_fetch;
 	            			END IF;
-
+		 WHEN others => 
+					nextState <= idle;
 	                   
 	        	END CASE;
 	     END PROCESS; 
